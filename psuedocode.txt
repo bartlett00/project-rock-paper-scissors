@@ -1,0 +1,10 @@
+function that returns random value of either:
+	rock
+	paper
+	or scissors
+
+fuction that plays single round of game
+	accepts player's choice
+	accepts computer's choice
+	returns text exclaiming whether player loses or wins
+
