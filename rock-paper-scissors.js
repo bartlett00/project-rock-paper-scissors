@@ -1,6 +1,5 @@
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3) + 1;
-    console.log(randomNum);
     if (randomNum == 1) {
         return 'rock';
     } else if (randomNum == 2) {
@@ -8,43 +7,70 @@ function getComputerChoice() {
     } else if (randomNum == 3) {
         return 'scissors';
     }
-}
-console.log(getComputerChoice());
+};
 
-playRound(playerSelection, computerSelection) {
+//console.log(getComputerChoice());
+
+let player = prompt('rock, paper, or scissors?', 'rock');
+let winOrLose = 'tie';
+
+function playRound(playerSelection, computerSelection) {
    let playerChoice = playerSelection.toLowerCase();
-   let winOrLose = false;
-
+   
 // algo. that determines who wins 
-
-   if (playerChoice == computerSelection) {
-    return 'It is a tie!';
-   } else if (playerChoice == 'rock') {
+    console.log(`the computer chooses ${computerSelection}!`);
+    if (playerChoice == computerSelection) {
+        winOrLose = 'tie';
+    } else if (playerChoice == 'rock') {
         if(computerSelection == 'paper') {
-            winOrLose = false;
+            winOrLose = 'lose';
         } else {
-            winOrLose = true;
+            winOrLose = 'win';
         }
-   } else if (playerChoice == 'paper') {
+    } else if (playerChoice == 'paper') {
         if (computerSelection == 'rock') {
-            winOrLose = true;
+            winOrLose = 'win';
         } else {
-            winOrLose = false;
+            winOrLose = 'lose';
         }
-   } else if (playerChoice == 'scissors') {
+    } else if (playerChoice == 'scissors') {
         if (computerSelection == 'paper') {
-            winOrLose = true;
+            winOrLose = 'win';
         } else {
-            winOrLose = false;
-        }
+            winOrLose = 'lose';
+        }   
    }
 
-// Checks if player wins or looses and returns appropriate message
+// Checks if player wins or loses and returns appropriate message
 
-   if (winOrLose == true) {
+   if (winOrLose == 'win') {
         return `You win! ${playerChoice} beats ${computerSelection}`;        
-   } else {
+   } else if (winOrLose == 'lose') {
         return `You lose! ${computerSelection} beats ${playerChoice}`;
+   } else if (winOrLose == 'tie') {
+        return `It is a tie!`;
    }
-}
+};
 
+function playGame() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for(i = 0; i < 5; i++) {
+        console.log(playRound(player, getComputerChoice()));
+        if (winOrLose == 'win') {
+            playerScore++;
+        } else if(winOrLose == 'lose') {
+            computerScore++;
+        }
+    }
+ 
+    console.log(`your score was ${playerScore}`);
+    console.log(`the computer scored ${computerScore}`);
+    if (playerScore > computerScore) {
+        return `You won! congrats on winning ${playerScore} rounds!`;   
+    } else {
+        return `Sorry... looks like you lost. you won ${playerScore} round(s) and the computer won ${computerScore} rounds`;
+    }
+};
+console.log(`you choose ${player}!`);
+console.log(playGame());

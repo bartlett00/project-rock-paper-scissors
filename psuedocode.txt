@@ -18,3 +18,8 @@ if
 	1 vs 3 = rock wins
 	2 vs 3 = scissors wins
 
+playRound function:
+	plays 5 rounds
+	keeps score
+	reports winner or loser at end
+	
