@@ -10,15 +10,16 @@ function getComputerChoice() {
 };
 
 //console.log(getComputerChoice());
-
-let player = prompt('rock, paper, or scissors?', 'rock');
+let player;
 let winOrLose = 'tie';
 
 function playRound(playerSelection, computerSelection) {
    let playerChoice = playerSelection.toLowerCase();
-   
+
 // algo. that determines who wins 
+    console.log(`the player chooses ${playerSelection}!`);
     console.log(`the computer chooses ${computerSelection}!`);
+
     if (playerChoice == computerSelection) {
         winOrLose = 'tie';
     } else if (playerChoice == 'rock') {
@@ -56,6 +57,7 @@ function playGame() {
     let playerScore = 0;
     let computerScore = 0;
     for(i = 0; i < 5; i++) {
+        player = prompt('rock, paper, or scissors?', 'rock');
         console.log(playRound(player, getComputerChoice()));
         if (winOrLose == 'win') {
             playerScore++;
@@ -72,5 +74,5 @@ function playGame() {
         return `Sorry... looks like you lost. you won ${playerScore} round(s) and the computer won ${computerScore} rounds`;
     }
 };
-console.log(`you choose ${player}!`);
+
 console.log(playGame());
