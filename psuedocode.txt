@@ -5,6 +5,16 @@ function that returns random value of either:
 
 fuction that plays single round of game
 	accepts player's choice
+		player's choice is case-insensitive
 	accepts computer's choice
 	returns text exclaiming whether player loses or wins
+
+if
+	rock is 1
+	paper is 2
+	scissors is 3
+
+	1 vs 2 = paper wins
+	1 vs 3 = rock wins
+	2 vs 3 = scissors wins
 
