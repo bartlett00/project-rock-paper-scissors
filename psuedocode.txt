@@ -22,4 +22,15 @@ playRound function:
 	plays 5 rounds
 	keeps score
 	reports winner or loser at end
+
+
+playRound event listener {
+	runs each time a button is pressed
+	check who wins
+		update the score
+			if someone gets to 5
+				scoreboard shows final score
+				score is reset
+
+}
 	

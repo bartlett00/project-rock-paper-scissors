@@ -9,16 +9,16 @@ function getComputerChoice() {
     }
 };
 
-//console.log(getComputerChoice());
 let player;
 let winOrLose = 'tie';
+let scorePlayer = 0;
+let scoreComputer = 0;
+let scoreDisplay = document.querySelector('#score'); 
+scoreDisplay.textContent = `Player: ${scorePlayer} - Computer: ${scoreComputer}`;
+let display = document.querySelector('#display');
 
 function playRound(playerSelection, computerSelection) {
-   let playerChoice = playerSelection.toLowerCase();
-
-// algo. that determines who wins 
-    console.log(`the player chooses ${playerSelection}!`);
-    console.log(`the computer chooses ${computerSelection}!`);
+    let playerChoice = playerSelection.toLowerCase();
 
     if (playerChoice == computerSelection) {
         winOrLose = 'tie';
@@ -41,18 +41,57 @@ function playRound(playerSelection, computerSelection) {
             winOrLose = 'lose';
         }   
    }
+    scoreDisplay.textContent = `Player: ${scorePlayer} - Computer: ${scoreComputer}`;
+     if (winOrLose == 'win') {
+            scorePlayer++;
+            if (scorePlayer == 5) {
+                display.textContent = `The final score is: ${scorePlayer} - ${scoreComputer}`;
+                scoreComputer = 0;
+                scorePlayer = 0;
+            } else {
+                display.textContent = `
+                Player choice: ${playerChoice}! 
+                Computer choice: ${computerSelection}!
+                You win!`;   
+            }    
+    } else if (winOrLose == 'lose') {
+            scoreComputer++;
+            if (scoreComputer == 5) {
+                display.textContent = `The final score is: ${scorePlayer} - ${scoreComputer}`;
+                scoreComputer = 0;
+                scorePlayer = 0;   
+            } else {
+                display.textContent = `
+                Player choice: ${playerChoice}!
+                Computer choice: ${computerSelection}!
+                You lose...`;  
+            }
+    } else if (winOrLose == 'tie') {
+            display.textContent = `
+            Player choice: ${playerChoice}!
+            Computer choice: ${computerSelection}!
+            It's a tie!`;
+    }
+    scoreDisplay.textContent = `Player: ${scorePlayer} - Computer: ${scoreComputer}`;
 
-// Checks if player wins or loses and returns appropriate message
-
-   if (winOrLose == 'win') {
-        return `You win! ${playerChoice} beats ${computerSelection}`;        
-   } else if (winOrLose == 'lose') {
-        return `You lose! ${computerSelection} beats ${playerChoice}`;
-   } else if (winOrLose == 'tie') {
-        return `It is a tie!`;
-   }
+    console.log(scoreComputer);
+    console.log(scorePlayer);
 };
 
+
+const buttons = document.querySelectorAll('button');
+console.log(buttons);
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        playRound(button.id, getComputerChoice());
+    });
+});
+
+
+
+
+/*
 function playGame() {
     let playerScore = 0;
     let computerScore = 0;
@@ -74,5 +113,5 @@ function playGame() {
         return `Sorry... looks like you lost. you won ${playerScore} round(s) and the computer won ${computerScore} rounds`;
     }
 };
+*/
 
-console.log(playGame());
